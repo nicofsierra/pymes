@@ -28,6 +28,8 @@ public class ControladorDirecciones {
 	@Inject
 	private ServicioValidarAdministrador servicioValidarAdministrador;
 
+	//VER PORQUE SALE DEL USUARIO
+	
 	@RequestMapping("/direcciones")
 	public ModelAndView irADirecciones(HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();

@@ -28,7 +28,9 @@ public class DireccionDaoImpl implements DireccionDao {
 	@Override
 	public Boolean abmPais(Pais pais, String accion) {
 		final Session session = sessionFactory.getCurrentSession();
-		try {
+		
+		
+		/*try {
 			switch (accion) {
 			case "a":
 				session.save(pais);
@@ -41,7 +43,23 @@ public class DireccionDaoImpl implements DireccionDao {
 			}
 		} catch (Exception e) {
 			return false;
+		}*/
+		
+		
+		if(accion.equals("a")){
+			session.save(pais);
+		}else{
+			if(accion.equals("b")){
+				session.delete(pais);
+			}else{
+				if(accion.equals("m")){
+					session.saveOrUpdate(pais);
+				}else{
+					return false;
+				}
+			}
 		}
+		
 		return true;
 	}
 
