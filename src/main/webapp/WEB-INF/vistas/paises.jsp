@@ -26,13 +26,13 @@
 			</div>
 			<div class="panel-body">
 
-				<form:form modelAttribute="pais" method="POST" action="abm-pais">
+				<form method="GET" action="alta">
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="descripcion">Pais
 						</label>
 						<div class="col-sm-4">
-							<form:input type="text" class="form-control" id="pais"
-								placeholder="Nombre Pais" name="descripcion" path="descripcion" value="${pais.descripcion}"/>
+							<input type="text" class="form-control" id="pais"
+								placeholder="Nombre Pais" name="descripcion" value="${pais.descripcion}"/>
 						</div>
 					</div>
 					<div class="form-group">
@@ -40,8 +40,8 @@
 							<button type="submit" class="btn btn-primary">Enviar</button>
 						</div>
 					</div>
-				<input type="hidden" value="${pais.idPais }" name="idPais" />
-				</form:form>
+				<input type="hidden" value="pais" name="tabla" />
+				</form>
 			</div>
 			<div class="container">
 				<table class="table">
