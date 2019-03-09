@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -24,14 +25,19 @@ public class Pais {
 	@JoinColumn(name="abm")
 	private Abm abm;
 	
+	@ManyToOne
+	@JoinColumn(name="estado")
+	private EstadoRegistro estado;
+	
 	public Pais(){}
 
-	public Pais(Long idPais, String descripcion, List<Provincia> provincia, Abm abm) {
+	public Pais(Long idPais, String descripcion, List<Provincia> provincia, Abm abm, EstadoRegistro estado) {
 		super();
 		this.idPais = idPais;
 		this.descripcion = descripcion;
 		this.provincia = provincia;
 		this.abm = abm;
+		this.estado = estado;
 	}
 	
 	public Abm getAbm() {
@@ -64,6 +70,14 @@ public class Pais {
 
 	public void setProvincia(List<Provincia> provincia) {
 		this.provincia = provincia;
+	}
+
+	public EstadoRegistro getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoRegistro estado) {
+		this.estado = estado;
 	}
 		
 }

@@ -12,33 +12,39 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Abm {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
-	private Date fecha;
-	
-	@ManyToOne
-	@JoinColumn(name="administrador")
-	private Administrador administrador;
-	
-	@ManyToOne
-	@JoinColumn(name="errores")
-	private Errores errores;
-	
-	@OneToOne(mappedBy="abm")
-	private Pais pais;
-	
-	public Abm(){}
 
-	public Abm(Long id, Date fecha, Administrador administrador, Errores errores, Pais pais) {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private Date fecha;
+
+	@ManyToOne
+	@JoinColumn(name = "administrador")
+	private Administrador administrador;
+
+	@ManyToOne
+	@JoinColumn(name = "errores")
+	private Retorno errores;
+
+	@OneToOne(mappedBy = "abm")
+	private Pais pais;
+
+	@ManyToOne
+	@JoinColumn(name = "estado")
+	private EstadoRegistro estado;
+
+	public Abm() {
+	}
+
+	public Abm(Long id, Date fecha, Administrador administrador, Retorno errores, Pais pais, EstadoRegistro estado) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
 		this.administrador = administrador;
 		this.errores = errores;
 		this.pais = pais;
+		this.estado = estado;
 	}
 
 	public Long getId() {
@@ -65,11 +71,11 @@ public class Abm {
 		this.administrador = administrador;
 	}
 
-	public Errores getErrores() {
+	public Retorno getErrores() {
 		return errores;
 	}
 
-	public void setErrores(Errores errores) {
+	public void setErrores(Retorno errores) {
 		this.errores = errores;
 	}
 
@@ -79,6 +85,14 @@ public class Abm {
 
 	public void setPais(Pais pais) {
 		this.pais = pais;
+	}
+
+	public EstadoRegistro getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoRegistro estado) {
+		this.estado = estado;
 	}
 
 }

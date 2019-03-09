@@ -16,7 +16,7 @@ import ar.com.pymes.modelo.Pais;
 import ar.com.pymes.modelo.Partido;
 import ar.com.pymes.modelo.Provincia;
 import ar.com.pymes.servicios.ServicioDireccion;
-import ar.com.pymes.servicios.ServicioErrores;
+import ar.com.pymes.servicios.ServicioMensaje;
 import ar.com.pymes.servicios.ServicioValidarAdministrador;
 
 @Controller
@@ -29,7 +29,7 @@ public class ControladorDirecciones {
 	private ServicioValidarAdministrador servicioValidarAdministrador;
 	
 	@Inject 
-	private ServicioErrores servicioErrores;
+	private ServicioMensaje servicioMensaje;
 
 	// VER PORQUE SALE DEL USUARIO
 
@@ -39,7 +39,7 @@ public class ControladorDirecciones {
 		if (servicioValidarAdministrador.validarAdministrador(request)) {
 			return new ModelAndView("direcciones", modelo);
 		} else {
-			modelo.put("error", servicioErrores.traerError(1L));
+			modelo.put("error", servicioMensaje.traerMensaje(1L));
 			return new ModelAndView("principal", modelo);
 		}
 	}
@@ -53,7 +53,7 @@ public class ControladorDirecciones {
 			modelo.put("calleAltura", calleAltura);
 			return new ModelAndView("calles", modelo);
 		} else {
-			modelo.put("error", servicioErrores.traerError(1L));
+			modelo.put("error", servicioMensaje.traerMensaje(1L));
 			return new ModelAndView("principal", modelo);
 		}
 	}
@@ -67,7 +67,7 @@ public class ControladorDirecciones {
 			modelo.put("localidad", localidad);
 			return new ModelAndView("localidades", modelo);
 		} else {
-			modelo.put("error", servicioErrores.traerError(1L));
+			modelo.put("error", servicioMensaje.traerMensaje(1L));
 			return new ModelAndView("principal", modelo);
 		}
 	}
@@ -81,7 +81,7 @@ public class ControladorDirecciones {
 			modelo.put("partido", partido);
 			return new ModelAndView("partidos", modelo);
 		} else {
-			modelo.put("error", servicioErrores.traerError(1L));
+			modelo.put("error", servicioMensaje.traerMensaje(1L));
 			return new ModelAndView("principal", modelo);
 		}
 	}
@@ -96,7 +96,7 @@ public class ControladorDirecciones {
 			modelo.put("provincia", provincia);
 			return new ModelAndView("provincias", modelo);
 		} else {
-			modelo.put("error", servicioErrores.traerError(1L));
+			modelo.put("error", servicioMensaje.traerMensaje(1L));
 			return new ModelAndView("principal", modelo);
 		}
 	}
@@ -108,7 +108,7 @@ public class ControladorDirecciones {
 			modelo.put("paises", servicioDireccion.buscarPaises());
 			return new ModelAndView("paises", modelo);
 		} else {
-			modelo.put("error", servicioErrores.traerError(1L));
+			modelo.put("error", servicioMensaje.traerMensaje(1L));
 			return new ModelAndView("principal", modelo);
 		}
 	}
@@ -122,7 +122,7 @@ public class ControladorDirecciones {
 			switch (tabla) {
 			case "pais":
 				if (descripcion.isEmpty()) {
-					modelo.put("error", servicioErrores.traerError(2L));
+					modelo.put("error", servicioMensaje.traerMensaje(2L));
 					modelo.put("paises", servicioDireccion.buscarPaises());
 					return new ModelAndView("paises", modelo);
 				} else {
@@ -133,17 +133,17 @@ public class ControladorDirecciones {
 						modelo.put("mensaje", "Dato guardado exitosamente");
 						return new ModelAndView("paises", modelo);
 					} else {
-						modelo.put("error", servicioErrores.traerError(3L));
+						modelo.put("error", servicioMensaje.traerMensaje(3L));
 						return new ModelAndView("paises", modelo);
 					}
 
 				}
 			default:
-				modelo.put("error", servicioErrores.traerError(4L));
+				modelo.put("error", servicioMensaje.traerMensaje(4L));
 				return new ModelAndView();
 			}
 		} else {
-			modelo.put("error", servicioErrores.traerError(1L));
+			modelo.put("error", servicioMensaje.traerMensaje(1L));
 			return new ModelAndView("principal", modelo);
 		}
 
@@ -163,7 +163,7 @@ public class ControladorDirecciones {
 				return new ModelAndView("direcciones");
 			}
 		} else {
-			modelo.put("error", servicioErrores.traerError(1L));
+			modelo.put("error", servicioMensaje.traerMensaje(1L));
 			return new ModelAndView("principal", modelo);
 		}
 	}
@@ -184,14 +184,14 @@ public class ControladorDirecciones {
 					modelo.put("pais", servicioDireccion.buscarPais(id));
 					return new ModelAndView("paises", modelo);
 				} else {
-					modelo.put("error", servicioErrores.traerError(3L));
+					modelo.put("error", servicioMensaje.traerMensaje(3L));
 					return new ModelAndView("paises", modelo);
 				}
 			default:
 				return new ModelAndView("direcciones");
 			}
 		} else {
-			modelo.put("error", servicioErrores.traerError(1L));
+			modelo.put("error", servicioMensaje.traerMensaje(1L));
 			return new ModelAndView("principal", modelo);
 		}
 	}
@@ -210,14 +210,14 @@ public class ControladorDirecciones {
 					modelo.put("pais", pais);
 					return new ModelAndView("paises", modelo);
 				} else {
-					modelo.put("error", servicioErrores.traerError(3L));
+					modelo.put("error", servicioMensaje.traerMensaje(3L));
 					return new ModelAndView("paises", modelo);
 				}
 			default:
 				return new ModelAndView("direcciones");
 			}
 		} else {
-			modelo.put("error", servicioErrores.traerError(1L));
+			modelo.put("error", servicioMensaje.traerMensaje(1L));
 			return new ModelAndView("principal", modelo);
 		}
 	}
